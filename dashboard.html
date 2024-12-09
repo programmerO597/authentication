@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <header>
+            <h1>Welcome to Your Dashboard</h1>
+            <p id="user-role">Role: <span id="role"></span></p>
+            <button id="logoutButton">Logout</button>
+        </header>
+
+        <main>
+            <section id="user-info">
+                <h2>User Information</h2>
+                <p>Here you can view and update your profile information.</p>
+                <button onclick="viewTimetable()">View Timetable</button>
+                <button onclick="viewUpdates()">View Updates</button>
+            </section>
+
+            <section id="notifications">
+                <h2>Notifications</h2>
+                <p>No new updates.</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Your Company. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Checking if the user is logged in by validating the token
+        const token = localStorage.getItem("token");
+        const role = localStorage.getItem("role");
+
+        if (!token) {
+            alert("Your session has expired. Please login again.");
+            window.location.href = "index.html";
+        }
+
+        // Display user role
+        document.getElementById("role").textContent = role;
+
+        // Logout functionality
+        document.getElementById("logoutButton").addEventListener("click", () => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("role");
+            window.location.href = "index.html";
+        });
+
+        // Placeholder functions for buttons
+        function viewTimetable() {
+            alert("Redirecting to timetable page...");
+        }
+
+        function viewUpdates() {
+            alert("Redirecting to updates page...");
+        }
+    </script>
+</body>
+
+</html>
